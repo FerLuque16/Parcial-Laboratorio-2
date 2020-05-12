@@ -1,0 +1,8 @@
+C:\Users\Fer\Desktop\PARCIAL LABORATORIO 2\Luque.Fernando\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\Fer\Desktop\PARCIAL LABORATORIO 2\Luque.Fernando\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.Fernando\Entidades\bin\Debug\Entidades.dll
+C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.Fernando\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.Fernando\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.Fernando\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.Fernando\Entidades\obj\Debug\Entidades.dll
+C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.Fernando\Entidades\obj\Debug\Entidades.pdb
