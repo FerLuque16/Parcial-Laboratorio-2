@@ -37,5 +37,10 @@ namespace Luque.Fernando
                 txtContraseña.Text = String.Empty;
             }
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -35,6 +35,7 @@ namespace Luque.Fernando
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+            this.wmpVideo.close();
         }
     }
 }
