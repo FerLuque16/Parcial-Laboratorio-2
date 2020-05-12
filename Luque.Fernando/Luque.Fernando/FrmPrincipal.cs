@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Luque.Fernando
 {
@@ -20,7 +21,9 @@ namespace Luque.Fernando
         public static List<Docente> listaDocentesMañana;
         public static List<Administrativo> listaNoDocentes;
 
+        static SoundPlayer sonidoGuardado = new SoundPlayer(Application.StartupPath+@"\sonido\sound.wav");// Link de video: https://www.youtube.com/watch?v=geJA9DAf8ZE
 
+        #region Propiedades
 
         public static List<Docente> DocentesTarde
         {
@@ -41,6 +44,8 @@ namespace Luque.Fernando
             }
 
         }
+
+        #endregion
 
 
         public FrmPrincipal()
@@ -84,6 +89,7 @@ namespace Luque.Fernando
                 if (!repetido)
                  {
                     listaAlumnos.Add(altaAlumno.Alumno);
+                    sonidoGuardado.Play();
                     MessageBox.Show("Se agregó al alumno correctamente");
                 }
                 else
@@ -113,12 +119,13 @@ namespace Luque.Fernando
 
             if (resultado == DialogResult.OK && altaDocente.Docente.HoraEntrada.Hour==8)
             {
-
+                sonidoGuardado.Play();
                 MessageBox.Show("Se agregó al docente");
                 listaDocentesMañana.Add(altaDocente.Docente);
             }
             else if(resultado==DialogResult.OK && altaDocente.Docente.HoraEntrada.Hour==13)
             {
+                sonidoGuardado.Play();
                 MessageBox.Show("Se agregó al docente");
                 listaDocentesTarde.Add(altaDocente.Docente);
             }
@@ -139,7 +146,7 @@ namespace Luque.Fernando
 
             if (resultado == DialogResult.OK)
             {
-
+                sonidoGuardado.Play();
                 MessageBox.Show("Se agregó al empleado");
                 listaNoDocentes.Add(altaNoDocente.NoDocente);
             }
@@ -163,6 +170,8 @@ namespace Luque.Fernando
 
             if (resultado == DialogResult.OK)
             {
+                sonidoGuardado.Play();
+                MessageBox.Show("Se cargo el aula correctamente", "", MessageBoxButtons.OK);
                 listaAulas.Add(altaAula.Aula);
             }
             else if (resultado == DialogResult.Abort)
@@ -186,6 +195,8 @@ namespace Luque.Fernando
 
             if (resultado == DialogResult.OK)
             {
+                sonidoGuardado.Play();
+                MessageBox.Show("Se cargo el aula correctamente", "", MessageBoxButtons.OK);
                 listaAulas.Add(altaAula.Aula);
             }
             else if (resultado == DialogResult.Abort)
@@ -210,6 +221,8 @@ namespace Luque.Fernando
 
             if (resultado == DialogResult.OK)
             {
+                sonidoGuardado.Play();
+                MessageBox.Show("Se cargo el aula correctamente", "", MessageBoxButtons.OK);
                 listaAulas.Add(altaAula.Aula);
             }
             else if (resultado == DialogResult.Abort)
@@ -235,6 +248,8 @@ namespace Luque.Fernando
 
             if (resultado == DialogResult.OK)
             {
+                sonidoGuardado.Play();
+                MessageBox.Show("Se cargo el aula correctamente", "", MessageBoxButtons.OK);
                 listaAulas.Add(altaAula.Aula);
             }
             else if(resultado==DialogResult.Abort)
