@@ -81,13 +81,15 @@ namespace Luque.Fernando
 
         public FrmAula()
         {
-            InitializeComponent();           
+            InitializeComponent();
+
+            listaAlumnosSinAula = new List<Alumno>();
+            listaAlumnosDelAula = new List<Alumno>();
         }
 
         private void FrmAula_Load(object sender, EventArgs e)
         {
-            listaAlumnosSinAula = new List<Alumno>();
-            listaAlumnosDelAula = new List<Alumno>();
+           
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -104,8 +106,11 @@ namespace Luque.Fernando
                 try
                 {
                     aula = new Aula(this.color, saberTurno(cmbTurno.Text), listaDocentes[lbProfesores.SelectedIndex]);
-                    listaDocentes.RemoveAt(lbProfesores.SelectedIndex);
+                    
+
+                    
                     aula.Alumnos = listaAlumnosDelAula;
+                    listaDocentes.RemoveAt(lbProfesores.SelectedIndex);
                     this.DialogResult = DialogResult.OK;
 
                 }
@@ -113,6 +118,15 @@ namespace Luque.Fernando
                 {
                     MessageBox.Show(error.Message);
                 }
+
+                #region Codigo antiguo
+                /*foreach (Alumno alumno in listaAlumnosDelAula)
+                    {
+                        if(!(aula + alumno))
+                        {
+                            this.DialogResult = DialogResult.Abort;
+                        }
+                    }*/
                 /*aula = new Aula(this.color, saberTurno(cmbTurno.Text), listaDocentes[lbProfesores.SelectedIndex]);
                 listaDocentes.RemoveAt(lbProfesores.SelectedIndex);
                 aula.Alumnos = listaAlumnosDelAula;*/
@@ -126,7 +140,9 @@ namespace Luque.Fernando
                     }
                     
                 }*/
-                
+
+                #endregion
+
 
             }
 
@@ -176,7 +192,7 @@ namespace Luque.Fernando
             {
                 MessageBox.Show("Debe seleccionar un alumno", "ERROR", MessageBoxButtons.OK);
             }
-            else
+            else if (lbAlumnosAula.Items.Count>30)
             {
                 MessageBox.Show("No puede asignar mas de 30 alumnos al aula", "ERROR", MessageBoxButtons.OK);
             }
@@ -276,6 +292,8 @@ namespace Luque.Fernando
             if(cmbTurno.Text=="mañana")
             {
                 listaDocentes = listaDocentesMañana;
+
+               
                  foreach (Docente docente in listaDocentesMañana)
                  {
                      lbProfesores.Items.Add(mostrarDatos(docente));

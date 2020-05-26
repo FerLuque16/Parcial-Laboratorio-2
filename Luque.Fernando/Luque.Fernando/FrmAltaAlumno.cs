@@ -44,43 +44,43 @@ namespace Luque.Fernando
         
 
         public void btnConfirmar_Click(object sender, EventArgs e)
-        { 
-          // if(String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtApellido.Text) || !(int.TryParse(txtDni.Text,out this.dni)) 
+        {
+            #region Codigo antiguo 
+            // if(String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtApellido.Text) || !(int.TryParse(txtDni.Text,out this.dni)) 
             //  || !(int.TryParse(txtLegajo.Text,out this.legajo)) || !(float.TryParse(txtCuota.Text,out this.precioCuota)) || int.TryParse(txtNombre.Text, out this.nombre) || int.TryParse(txtApellido.Text,out this.apellido))
-           //if(!(base.validarDatos()) || String.IsNullOrEmpty(cmbColorSala.Text)||!(int.TryParse(txtLegajo.Text, out this.legajo)) || !(float.TryParse(txtCuota.Text, out this.precioCuota)))
-           // {
-           //     FrmPrincipal.mensajeError();
+            //if(!(base.validarDatos()) || String.IsNullOrEmpty(cmbColorSala.Text)||!(int.TryParse(txtLegajo.Text, out this.legajo)) || !(float.TryParse(txtCuota.Text, out this.precioCuota)))
+            // {
+            //     FrmPrincipal.mensajeError();
 
-           // }
-           // else
-           // {
-            
-           //     alumno = new Alumno(txtNombre.Text, txtApellido.Text, int.Parse(txtDni.Text), base.esFemenino(cmbSexo.Text), this.precioCuota);
-           //     alumno.Legajo = this.legajo;
-           //     alumno.ColorSala = colorDeSala(cmbColorSala.Text);
+            // }
+            // else
+            // {
 
-           //     FrmAltaResponsable altaResponsable = new FrmAltaResponsable();
+            //     alumno = new Alumno(txtNombre.Text, txtApellido.Text, int.Parse(txtDni.Text), base.esFemenino(cmbSexo.Text), this.precioCuota);
+            //     alumno.Legajo = this.legajo;
+            //     alumno.ColorSala = colorDeSala(cmbColorSala.Text);
 
-           //     this.Hide();
-           //     DialogResult resultado=altaResponsable.ShowDialog();
-           //     if (resultado == DialogResult.OK)
-           //     {
-                   
-           //         alumno.Responsable = altaResponsable.Responsable;
-           //         this.DialogResult = DialogResult.OK;
-                   
-           //     }
-           //     else
-           //     {
-           //         MessageBox.Show("No se ha agregado al responsable");
-           //         this.DialogResult = DialogResult.Cancel;
-           //     }
-               
+            //     FrmAltaResponsable altaResponsable = new FrmAltaResponsable();
 
-           // }
-            try
-            {
-                if (!(base.validarDatos()) || String.IsNullOrEmpty(cmbColorSala.Text) || !(int.TryParse(txtLegajo.Text, out this.legajo)) || !(float.TryParse(txtCuota.Text, out this.precioCuota)))
+            //     this.Hide();
+            //     DialogResult resultado=altaResponsable.ShowDialog();
+            //     if (resultado == DialogResult.OK)
+            //     {
+
+            //         alumno.Responsable = altaResponsable.Responsable;
+            //         this.DialogResult = DialogResult.OK;
+
+            //     }
+            //     else
+            //     {
+            //         MessageBox.Show("No se ha agregado al responsable");
+            //         this.DialogResult = DialogResult.Cancel;
+            //     }
+
+            #endregion
+
+
+            if (!(base.validarDatos()) || String.IsNullOrEmpty(cmbColorSala.Text) || !(int.TryParse(txtLegajo.Text, out this.legajo)) || !(float.TryParse(txtCuota.Text, out this.precioCuota)))
 
                 {
                     FrmPrincipal.mensajeError();
@@ -113,18 +113,7 @@ namespace Luque.Fernando
                     }
                 }
 
-            }catch(AlumnoSinDniException dniEx)
-            {
-                MessageBox.Show(dniEx.Message);
-            }
-            catch(ApellidoVacioException apeEx)
-            {
-                MessageBox.Show(apeEx.Message);
-            }
-            catch(NombreVacioException nomEx)
-            {
-                MessageBox.Show(nomEx.Message);
-            }
+          
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -85,21 +85,14 @@ namespace Luque.Fernando
         {
             FrmDatos altaDatos = new FrmDatos();
             FrmAltaAlumno altaAlumno = new FrmAltaAlumno();
-            bool repetido=false;
+            //bool repetido=false;
             DialogResult resultado;
 
             resultado = altaAlumno.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-                /* foreach (Alumno alumno in listaAlumnos)
-                 {
-                     if(alumno==altaAlumno.Alumno)
-                     {
-                         repetido = true;
-                     }
-
-                 }*/
+                
 
                 try
                 {
@@ -112,6 +105,17 @@ namespace Luque.Fernando
                 {
                     MessageBox.Show(error.Message);
                 }
+
+                #region Codigo antiguo 
+
+                /* foreach (Alumno alumno in listaAlumnos)
+                 {
+                     if(alumno==altaAlumno.Alumno)
+                     {
+                         repetido = true;
+                     }
+
+                 }*/
 
                 // if (!repetido)
                 //{
@@ -133,6 +137,7 @@ namespace Luque.Fernando
                      MessageBox.Show(error.Message);
                  }*/
 
+                #endregion
 
             }
             else
@@ -143,6 +148,11 @@ namespace Luque.Fernando
 
         }
 
+        /// <summary>
+        /// Dar de alta a un docente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void altaDeDocenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPersonal altaDocente = new FrmPersonal();         
@@ -174,6 +184,12 @@ namespace Luque.Fernando
            
         }
 
+
+        /// <summary>
+        /// dar de alta un emppleado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void altaNoDocenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPersonal altaNoDocente = new FrmPersonal();
@@ -199,6 +215,12 @@ namespace Luque.Fernando
 
         }
 
+
+        /// <summary>
+        /// Dar de alta un aula roja
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rojoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAula altaAula = new FrmAula();
@@ -228,6 +250,11 @@ namespace Luque.Fernando
 
         }
 
+        /// <summary>
+        /// Dar de alta un aula amarilla
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void amarilloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAula altaAula = new FrmAula();
@@ -256,6 +283,11 @@ namespace Luque.Fernando
 
         }
 
+        /// <summary>
+        /// Dar de alta un aula verde
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void verdeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAula altaAula = new FrmAula();
@@ -286,6 +318,12 @@ namespace Luque.Fernando
 
         }
 
+
+        /// <summary>
+        /// Dar de alta un aula naranja
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void naranjaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAula altaAula = new FrmAula();
@@ -316,7 +354,11 @@ namespace Luque.Fernando
 
         }
 
-
+        /// <summary>
+        /// Dar la informacion de los responsable de los alumnos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void informacionDeLosPadresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmDatosResponsable datosResponsable = new FrmDatosResponsable();
@@ -325,6 +367,11 @@ namespace Luque.Fernando
             datosResponsable.ShowDialog();
         }
 
+        /// <summary>
+        /// Mostrar el sueldo de cada docente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sueldoDeLosDocentesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmReportes reporteDocentes = new FrmReportes();
@@ -335,6 +382,12 @@ namespace Luque.Fernando
             reporteDocentes.ShowDialog();
         }
 
+
+        /// <summary>
+        /// Mostrar el sueldo de los empleados del jardin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sueldoDeLosNoDocentesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -346,6 +399,12 @@ namespace Luque.Fernando
 
 
         // No pude cambiar el nombre a este metodo
+
+        /// <summary>
+        /// Muestra la recaudacion del jardin ya sea por aula y total
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void recaudacionDeCadaAulaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmRecaudacion reporteAulas = new FrmRecaudacion();
@@ -357,6 +416,11 @@ namespace Luque.Fernando
 
         }
 
+        /// <summary>
+        /// Ejecuta la creacion de entidades
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cargarPruebaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -719,6 +783,12 @@ namespace Luque.Fernando
 
         }
 
+
+        /// <summary>
+        /// Muestra las opciones para ver los videos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void videosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmVideos formularioVideos = new FrmVideos();
@@ -728,17 +798,30 @@ namespace Luque.Fernando
 
         }
 
+        /// <summary>
+        /// Opcion para salir del formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
 
-
+        /// <summary>
+        /// Mensaje a mostrar en caso de error
+        /// </summary>
         public static void mensajeError()
         {
             MessageBox.Show("Datos invalidos. Revisar.", "ERROR", MessageBoxButtons.OK);
         }
 
+
+        /// <summary>
+        /// Valida que hay un alumno igual
+        /// </summary>
+        /// <param name="alumno"></param>
         
         public void ValidarAlumnoIgual(Alumno alumno)
         {

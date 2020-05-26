@@ -10,52 +10,7 @@ namespace TestUnitario
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        [ExpectedException(typeof(AlumnoSinDniException))]
-        public void AlumnoSinDni()
-        {
-            Alumno a1 = new Alumno("pepe", "peposo", 100, false, 5000);
-
-            //Assert.IsNotNull(a1);
-            
-        }
-
-        [TestMethod]
-        public void AlumnoDniValido()
-        {
-            Alumno a1 = new Alumno("pepe", "peposo", 1232560, false, 5000);
-
-            Assert.IsNotNull(a1);
-       
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-
-        [TestMethod]
-        [ExpectedException(typeof(NombreVacioException))]
-        public void TestNombreVacio()
-        {
-            Alumno a1 = new Alumno("", "peposo", 1232560, false, 5000);
-          
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-
-        [TestMethod]
-        [ExpectedException(typeof(ApellidoVacioException))]
-        public void TestApellidoVacio()
-        {
-            Alumno a1 = new Alumno("pepe", "", 1232560, false, 5000);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
+        
         
         [TestMethod]
         [ExpectedException(typeof(SumaAlumnoException))]
@@ -70,9 +25,7 @@ namespace TestUnitario
             _ = aula + alumno;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        
 
         [TestMethod]
         [ExpectedException(typeof(AulaVaciaException))]
@@ -88,9 +41,7 @@ namespace TestUnitario
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
+       
 
         [TestMethod]
         [ExpectedException(typeof(AlumnoIgualException))]
@@ -103,7 +54,7 @@ namespace TestUnitario
 
            
 
-           // altaAlumno.btnConfirmar_Click(object sender, EventArgs e);
+           
 
             List<Alumno> listaAlumnos2 = new List<Alumno>();
             Alumno alumno1 = new Alumno("Pepe", "Peposo", 30000000, false, 500);         

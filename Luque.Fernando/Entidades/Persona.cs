@@ -22,7 +22,7 @@ namespace Entidades
             }
             set 
             {
-                ValidarApellido(value);
+                //ValidarApellido(value);
                 this.apellido = value; 
             }
         }
@@ -35,7 +35,7 @@ namespace Entidades
             }
             set 
             {
-                ValidarNombre(value);
+                //ValidarNombre(value);
                 this.nombre = value; 
             }
         }
@@ -49,7 +49,7 @@ namespace Entidades
             }
             set 
             {
-                ValidarPersonaSinDNI(value);
+                //ValidarPersonaSinDNI(value);
                 this.dni = value; 
             }
         }
@@ -100,7 +100,7 @@ namespace Entidades
         }
 
 
-        public void ValidarPersonaSinDNI(int value)
+       /* public void ValidarPersonaSinDNI(int value)
         {
             if(value <1000000)
             {
@@ -122,7 +122,7 @@ namespace Entidades
             {
                 throw new ApellidoVacioException("Apellido vacio");
             }
-        }
+        }*/
 
         
     }
