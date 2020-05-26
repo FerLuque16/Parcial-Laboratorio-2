@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Excepciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,9 @@ namespace Luque.Fernando
 {
     public partial class FrmAula : Form
     {
-
         List<Docente> listaDocentes;
+        List<Docente> listaDocentesTarde;
+        List<Docente> listaDocentesMañana;
         List<Alumno> listaAlumnos;
         List<Alumno> listaAlumnosSinAula;
         List<Alumno> listaAlumnosDelAula;
@@ -90,7 +92,7 @@ namespace Luque.Fernando
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (lbProfesores.SelectedIndex == -1 || String.IsNullOrEmpty(cmbTurno.Text) || listaAlumnosDelAula.Count==0)
+            if (lbProfesores.SelectedIndex == -1 || String.IsNullOrEmpty(cmbTurno.Text))
             {
                 MessageBox.Show("Debe seleccionar profesor , turno y asignar alumnos al aula", "ERROR", MessageBoxButtons.OK);
             }
@@ -99,20 +101,32 @@ namespace Luque.Fernando
                 //int index;
                 //index = lbProfesores.SelectedIndex;
 
-                
-                aula = new Aula(this.color, saberTurno(cmbTurno.Text), listaDocentes[lbProfesores.SelectedIndex]);
-                listaDocentes.RemoveAt(lbAlumnosAula.SelectedIndex);
-                aula.Alumnos = listaAlumnosDelAula;
+                try
+                {
+                    aula = new Aula(this.color, saberTurno(cmbTurno.Text), listaDocentes[lbProfesores.SelectedIndex]);
+                    listaDocentes.RemoveAt(lbProfesores.SelectedIndex);
+                    aula.Alumnos = listaAlumnosDelAula;
+                    this.DialogResult = DialogResult.OK;
 
-                foreach ( Alumno alumno in listaAlumnosDelAula )
+                }
+                catch(AulaVaciaException error)
+                {
+                    MessageBox.Show(error.Message);
+                }
+                /*aula = new Aula(this.color, saberTurno(cmbTurno.Text), listaDocentes[lbProfesores.SelectedIndex]);
+                listaDocentes.RemoveAt(lbProfesores.SelectedIndex);
+                aula.Alumnos = listaAlumnosDelAula;*/
+                //eliminarAlumnosAsignado(listaAlumnosDelAula);
+
+                /*foreach ( Alumno alumno in listaAlumnosDelAula )
                 {
                     if (!(aula + alumno))
                     {
                         this.DialogResult = DialogResult.Abort;
                     }
                     
-                }
-                this.DialogResult = DialogResult.OK;
+                }*/
+                
 
             }
 
@@ -129,13 +143,38 @@ namespace Luque.Fernando
 
 
             //lbAlumnosAula.Items.Add(listaAlumnosSinAula[index].ToString());
-            if(lbAlumnosAula.Items.Count<30)
+            if(lbAlumnosAula.Items.Count<30 && lbAlumnosSinAula.SelectedIndex !=-1)
             {
                 lbAlumnosAula.Items.Add(mostrarDatos(listaAlumnosSinAula[index]));//Agrego el alumno seleccionado al listbox del aula
                 lbAlumnosSinAula.Items.Remove(lbAlumnosSinAula.SelectedItem);//Remuevo el alumno seleccionado del listbox de alumnos sin aula
 
                 listaAlumnosDelAula.Add(listaAlumnosSinAula[index]);//Agrego a la lista del aula el alumno seleccionado pero sacandolo de la lista de alumnos
-                listaAlumnosSinAula.RemoveAt(index);//Remuevo el alumno asignado al aula
+                
+
+                //foreach (Alumno alumno in listaAlumnos)
+                //{
+                    //if (listaAlumnosSinAula[index] == alumno)
+                      //  listaAlumnos.Remove(alumno);
+                //}
+
+                for (int i = 0; i < listaAlumnos.Count; i++)
+                {
+                    if (listaAlumnosSinAula[index] == listaAlumnos[i])
+
+                    {
+                        listaAlumnos.Remove(listaAlumnos[i]);
+                        break;
+                    }
+
+                
+                }
+                listaAlumnosSinAula.RemoveAt(index);
+
+                //Remuevo el alumno asignado al aula
+            }
+            else if(lbAlumnosSinAula.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un alumno", "ERROR", MessageBoxButtons.OK);
             }
             else
             {
@@ -163,13 +202,7 @@ namespace Luque.Fernando
             }
 
         }
-
-
-        
-
-
-
-        
+    
 
         /// <summary>
         /// Retorna el enumerado turno que se selecciona en el combobox
@@ -193,13 +226,26 @@ namespace Luque.Fernando
         /// <summary>
         /// Carga los alumnos ya filtrados en el listbox
         /// </summary>
-        public void cargarAlumnos()
+        /*public void cargarAlumnos()
         {
 
             foreach (Alumno alumno in listaAlumnosSinAula)
             {
                 lbAlumnosSinAula.Items.Add(mostrarDatos(alumno));
             }              
+
+        }*/
+
+        public void cargarAlumnos()
+        {
+
+            foreach (Alumno alumno in listaAlumnos)
+            {
+                if (alumno.ColorSala == this.color)
+                {
+                    lbAlumnosSinAula.Items.Add(mostrarDatos(alumno));
+                }
+            }
 
         }
 
@@ -226,11 +272,11 @@ namespace Luque.Fernando
         {
             lbProfesores.Items.Clear();
 
-
+            
             if(cmbTurno.Text=="mañana")
             {
-                listaDocentes = FrmPrincipal.DocentesMañana;
-                 foreach (Docente docente in listaDocentes)
+                listaDocentes = listaDocentesMañana;
+                 foreach (Docente docente in listaDocentesMañana)
                  {
                      lbProfesores.Items.Add(mostrarDatos(docente));
                  }
@@ -240,8 +286,8 @@ namespace Luque.Fernando
             }
             else if(cmbTurno.Text=="tarde")
             {
-                listaDocentes = FrmPrincipal.DocentesTarde;
-                 foreach (Docente docente in listaDocentes)
+                listaDocentes = listaDocentesTarde;
+                 foreach (Docente docente in listaDocentesTarde)
                  {
                      lbProfesores.Items.Add(mostrarDatos(docente));
                  }
@@ -251,6 +297,18 @@ namespace Luque.Fernando
                 
             
         }
+
+        /*public void eliminarAlumnosAsignado(List<Alumno> lista)
+        {
+            foreach (Alumno alumno in listaAlumnos)
+            {
+                foreach(Alumno alumno2 in lista)
+                {
+                    if (alumno == alumno2)
+                        listaAlumnos.Remove(alumno);
+                }
+            }
+        }*/
 
         /// <summary>
         /// Retorna un string con los datos de la persona para asignar al listbox
@@ -284,6 +342,40 @@ namespace Luque.Fernando
             }
             
         }
+
+        /*public List<Docente> ListaDocentesTarde
+        {
+
+        }*/
+
+      
+
+        public List<Docente> ListaDocentesTarde
+        {
+            get 
+            { 
+                return listaDocentesTarde; 
+            }
+            set 
+            { 
+                listaDocentesTarde = value; 
+            }
+        }
+
+        public List<Docente> ListaDocentesMañana
+        {
+            get
+            {
+                return listaDocentesMañana;
+            }
+            set
+            {
+                listaDocentesMañana = value;
+            }
+        }
+
+
+
 
 
 

@@ -48,6 +48,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(330, 538);
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // lblEntrada
             // 
@@ -190,9 +191,9 @@
         private System.Windows.Forms.ComboBox cmbEntrada;
         private System.Windows.Forms.ComboBox cmbSalida;
         private System.Windows.Forms.Label lblCargo;
-        private System.Windows.Forms.Label lblValorHora;
-        private System.Windows.Forms.TextBox txtValorHora;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbCargo;
+        public System.Windows.Forms.Label lblValorHora;
+        public System.Windows.Forms.TextBox txtValorHora;
     }
 }

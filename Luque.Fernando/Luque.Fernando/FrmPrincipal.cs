@@ -10,22 +10,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using Excepciones;
 
 namespace Luque.Fernando
 {
     public partial class FrmPrincipal : Form
     {
-        public static List<Alumno> listaAlumnos;
-        public static List<Aula> listaAulas;
-        public static List<Docente> listaDocentesTarde;
-        public static List<Docente> listaDocentesMañana;
-        public static List<Administrativo> listaNoDocentes;
+        public  List<Alumno> listaAlumnos;
+        public  List<Aula> listaAulas;
+        public  List<Docente> listaDocentesTarde;
+        public  List<Docente> listaDocentesMañana;
+        public  List<Administrativo> listaNoDocentes;
 
         static SoundPlayer sonidoGuardado = new SoundPlayer(Application.StartupPath+@"\sonido\sound.wav");// Link de video: https://www.youtube.com/watch?v=geJA9DAf8ZE
 
         #region Propiedades
 
-        public static List<Docente> DocentesTarde
+        public  List<Docente> DocentesTarde
         {
             get
             {
@@ -36,7 +37,7 @@ namespace Luque.Fernando
 
 
 
-        public static List<Docente> DocentesMañana
+        public  List<Docente> DocentesMañana
         {
             get
             {
@@ -45,23 +46,37 @@ namespace Luque.Fernando
 
         }
 
+        public  List<Alumno> ListaAlumnos
+
+        {
+            get
+            {
+                return listaAlumnos;
+            }
+
+            set
+            {
+                listaAlumnos = value;
+            }
+        }
         #endregion
 
 
         public FrmPrincipal()
         {
             InitializeComponent();
-           
-        }
-
-        private void FrmPrincipal_Load(object sender, EventArgs e)
-        {
-
             listaAlumnos = new List<Alumno>();
             listaAulas = new List<Aula>();
             listaDocentesTarde = new List<Docente>();
             listaDocentesMañana = new List<Docente>();
             listaNoDocentes = new List<Administrativo>();
+
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+
+           
 
 
         }
@@ -77,23 +92,46 @@ namespace Luque.Fernando
 
             if (resultado == DialogResult.OK)
             {
-                foreach (Alumno alumno in listaAlumnos)
-                {
-                    if(alumno==altaAlumno.Alumno)
-                    {
-                        repetido = true;
-                    }
-                         
-                }
-
-                if (!repetido)
+                /* foreach (Alumno alumno in listaAlumnos)
                  {
+                     if(alumno==altaAlumno.Alumno)
+                     {
+                         repetido = true;
+                     }
+
+                 }*/
+
+                try
+                {
+                    ValidarAlumnoIgual(altaAlumno.Alumno);
                     listaAlumnos.Add(altaAlumno.Alumno);
                     sonidoGuardado.Play();
                     MessageBox.Show("Se agregó al alumno correctamente");
                 }
-                else
-                    MessageBox.Show("No se puede agregar alumnos con el mismo legajo y responsable");
+                catch(AlumnoIgualException error)
+                {
+                    MessageBox.Show(error.Message);
+                }
+
+                // if (!repetido)
+                //{
+
+                //}
+                // else
+                // MessageBox.Show("No se puede agregar alumnos con el mismo legajo y responsable");
+
+                /* try
+                 {
+                     ValidarAlumnoIgual(altaAlumno.Alumno);
+                     listaAlumnos.Add(altaAlumno.Alumno);
+                     sonidoGuardado.Play();
+                     MessageBox.Show("Se agregó al alumno correctamente");
+
+                 }
+                 catch(AlumnoIgualException error)
+                 {
+                     MessageBox.Show(error.Message);
+                 }*/
 
 
             }
@@ -139,6 +177,9 @@ namespace Luque.Fernando
         private void altaNoDocenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPersonal altaNoDocente = new FrmPersonal();
+            altaNoDocente.txtValorHora.Enabled = false;
+            altaNoDocente.lblValorHora.Enabled = false;
+
             DialogResult resultado;
 
             resultado=altaNoDocente.ShowDialog();
@@ -162,6 +203,8 @@ namespace Luque.Fernando
         {
             FrmAula altaAula = new FrmAula();
             altaAula.ListaAlumnos = listaAlumnos;
+            altaAula.ListaDocentesTarde = listaDocentesTarde;
+            altaAula.ListaDocentesMañana = listaDocentesMañana;
             DialogResult resultado;
             altaAula.Color = EColores.Rojo;
             altaAula.BackColor = Color.Red;
@@ -188,6 +231,9 @@ namespace Luque.Fernando
         private void amarilloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAula altaAula = new FrmAula();
+            altaAula.ListaAlumnos = listaAlumnos;
+            altaAula.ListaDocentesTarde = listaDocentesTarde;
+            altaAula.ListaDocentesMañana = listaDocentesMañana;
             DialogResult resultado;
             altaAula.Color = EColores.Amarillo;
             altaAula.BackColor = Color.Yellow;
@@ -213,6 +259,9 @@ namespace Luque.Fernando
         private void verdeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAula altaAula = new FrmAula();
+            altaAula.ListaAlumnos = listaAlumnos;
+            altaAula.ListaDocentesTarde = listaDocentesTarde;
+            altaAula.ListaDocentesMañana = listaDocentesMañana;
             DialogResult resultado;
             altaAula.Color = EColores.Verde;
             altaAula.BackColor = Color.Green;
@@ -240,6 +289,9 @@ namespace Luque.Fernando
         private void naranjaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAula altaAula = new FrmAula();
+            altaAula.ListaAlumnos = listaAlumnos;
+            altaAula.ListaDocentesTarde = listaDocentesTarde;
+            altaAula.ListaDocentesMañana = listaDocentesMañana;
             DialogResult resultado;
             altaAula.Color = EColores.Naranja;
             altaAula.BackColor = Color.Orange;
@@ -646,11 +698,11 @@ namespace Luque.Fernando
             listaDocentesMañana.Add(docente6);
 
 
-            Administrativo noDocente1 = new Administrativo("Margalo", "Fells", 49188601, false, DateTime.Parse("13:00"), DateTime.Parse("17:00"), ECargo.Cocina);
-            Administrativo noDocente2 = new Administrativo("Gris", "Takis", 58206613, true, DateTime.Parse("13:00"), DateTime.Parse("17:00"), ECargo.Direccion);
-            Administrativo noDocente3 = new Administrativo("Sherrie", "Checketts", 47440718, true, DateTime.Parse("13:00"), DateTime.Parse("17:00"), ECargo.Porteria);
-            Administrativo noDocente4 = new Administrativo("Pearla", "Marvel", 58750918, false, DateTime.Parse("08:00 "), DateTime.Parse("12:00"), ECargo.Secretaria);
-            Administrativo noDocente5 = new Administrativo("Kipp", "Levicount", 55502388, false, DateTime.Parse("08:00 "), DateTime.Parse("12:00"), ECargo.Tesoreria);
+            Administrativo noDocente1 = new Administrativo("Margarita", "Gutierrez", 49188601, true, DateTime.Parse("13:00"), DateTime.Parse("17:00"), ECargo.Cocina);
+            Administrativo noDocente2 = new Administrativo("Juan", "Ramirez", 58206613, false, DateTime.Parse("13:00"), DateTime.Parse("17:00"), ECargo.Direccion);
+            Administrativo noDocente3 = new Administrativo("Pepe", "Pompin", 47440718, false, DateTime.Parse("13:00"), DateTime.Parse("17:00"), ECargo.Porteria);
+            Administrativo noDocente4 = new Administrativo("Pablo", "Martinez", 58750918, false, DateTime.Parse("08:00 "), DateTime.Parse("12:00"), ECargo.Secretaria);
+            Administrativo noDocente5 = new Administrativo("Rodrigo", "Alvarez", 55502388, false, DateTime.Parse("08:00 "), DateTime.Parse("12:00"), ECargo.Tesoreria);
 
             listaNoDocentes.Add(noDocente1);
             listaNoDocentes.Add(noDocente2);
@@ -688,5 +740,16 @@ namespace Luque.Fernando
         }
 
         
+        public void ValidarAlumnoIgual(Alumno alumno)
+        {
+            //ilistaAlumnos
+            foreach(Alumno alumnoLista in listaAlumnos)
+            {
+                if (alumno == alumnoLista)
+                {
+                    throw new AlumnoIgualException("Ya hay un alumno igual y no podra ser cargado");
+                }
+            }
+        }
     }
 }

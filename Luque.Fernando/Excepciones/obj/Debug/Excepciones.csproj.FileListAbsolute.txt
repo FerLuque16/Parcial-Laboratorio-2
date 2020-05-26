@@ -1,0 +1,6 @@
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Excepciones\bin\Debug\Excepciones.dll
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Excepciones\bin\Debug\Excepciones.pdb
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Excepciones\obj\Debug\Excepciones.csprojAssemblyReference.cache
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Excepciones\obj\Debug\Excepciones.csproj.CoreCompileInputs.cache
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Excepciones\obj\Debug\Excepciones.dll
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Excepciones\obj\Debug\Excepciones.pdb

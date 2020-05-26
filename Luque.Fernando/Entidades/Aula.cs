@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Excepciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,8 @@ namespace Entidades
                 return this.alumnos;
             }
             set 
-            { 
+            {
+                ValidarAulaNoVacia(value);
                 this.alumnos = value; 
             }
         }
@@ -74,6 +76,7 @@ namespace Entidades
             this.colorSala = colorSala;
             this.turno = turno;
             this.docente = docente;
+            this.alumnos = new List<Alumno>();
         }
 
         public static bool operator +(Aula aula, Alumno alumno)
@@ -86,9 +89,10 @@ namespace Entidades
                     aula.alumnos.Add(alumno);
                     return true;
                 }
-            }           
+            }
 
-            return false; 
+            throw new SumaAlumnoException("No fue posible agregar el alumno al aula");
+            //return false; 
         }
 
         public override string ToString()
@@ -101,6 +105,14 @@ namespace Entidades
             return sb.ToString();
         }
 
+
+        public void ValidarAulaNoVacia(List<Alumno> value)
+        {
+            if(value.Count==0)
+            {
+                throw new AulaVaciaException("No puede crear un aula sin alumnos");
+            }
+        }
 
     }
 }

@@ -173,6 +173,10 @@
       <Project>{4fdd13de-7ca1-4f5b-b371-86d56ddcc353}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Excepciones\Excepciones.csproj">
+      <Project>{92135e04-0492-42d2-9db6-1a9f43dbaa14}</Project>
+      <Name>Excepciones</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxWMPLib">

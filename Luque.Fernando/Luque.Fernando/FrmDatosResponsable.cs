@@ -142,8 +142,7 @@ namespace Luque.Fernando
             cmbTurno.Items.Add(Eturno.tarde);
         }
 
-        
-
+       
         
     }
 }

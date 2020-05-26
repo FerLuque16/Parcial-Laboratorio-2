@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
+using Excepciones;
 
 namespace Luque.Fernando
 {
@@ -26,6 +27,11 @@ namespace Luque.Fernando
                 return this.alumno;
             }
 
+            set
+            {
+                this.alumno = value;
+            }
+
         }
 
         public FrmAltaAlumno()
@@ -37,40 +43,87 @@ namespace Luque.Fernando
 
         
 
-        private void btnConfirmar_Click(object sender, EventArgs e)
+        public void btnConfirmar_Click(object sender, EventArgs e)
         { 
           // if(String.IsNullOrEmpty(txtNombre.Text) || String.IsNullOrEmpty(txtApellido.Text) || !(int.TryParse(txtDni.Text,out this.dni)) 
             //  || !(int.TryParse(txtLegajo.Text,out this.legajo)) || !(float.TryParse(txtCuota.Text,out this.precioCuota)) || int.TryParse(txtNombre.Text, out this.nombre) || int.TryParse(txtApellido.Text,out this.apellido))
-           if(!(base.validarDatos()) || String.IsNullOrEmpty(cmbColorSala.Text)||!(int.TryParse(txtLegajo.Text, out this.legajo)) || !(float.TryParse(txtCuota.Text, out this.precioCuota)))
-            {
-                FrmPrincipal.mensajeError();
+           //if(!(base.validarDatos()) || String.IsNullOrEmpty(cmbColorSala.Text)||!(int.TryParse(txtLegajo.Text, out this.legajo)) || !(float.TryParse(txtCuota.Text, out this.precioCuota)))
+           // {
+           //     FrmPrincipal.mensajeError();
 
-            }
-            else
-            {
+           // }
+           // else
+           // {
             
-                alumno = new Alumno(txtNombre.Text, txtApellido.Text, int.Parse(txtDni.Text), base.esFemenino(cmbSexo.Text), this.precioCuota);
-                alumno.Legajo = this.legajo;
-                alumno.ColorSala = colorDeSala(cmbColorSala.Text);
+           //     alumno = new Alumno(txtNombre.Text, txtApellido.Text, int.Parse(txtDni.Text), base.esFemenino(cmbSexo.Text), this.precioCuota);
+           //     alumno.Legajo = this.legajo;
+           //     alumno.ColorSala = colorDeSala(cmbColorSala.Text);
 
-                FrmAltaResponsable altaResponsable = new FrmAltaResponsable();
+           //     FrmAltaResponsable altaResponsable = new FrmAltaResponsable();
 
-                this.Hide();
-                DialogResult resultado=altaResponsable.ShowDialog();
-                if (resultado == DialogResult.OK)
-                {
+           //     this.Hide();
+           //     DialogResult resultado=altaResponsable.ShowDialog();
+           //     if (resultado == DialogResult.OK)
+           //     {
                    
-                    alumno.Responsable = altaResponsable.Responsable;
-                    this.DialogResult = DialogResult.OK;
+           //         alumno.Responsable = altaResponsable.Responsable;
+           //         this.DialogResult = DialogResult.OK;
                    
-                }
-                else
-                {
-                    MessageBox.Show("No se ha agregado al responsable");
-                    this.DialogResult = DialogResult.Cancel;
-                }
+           //     }
+           //     else
+           //     {
+           //         MessageBox.Show("No se ha agregado al responsable");
+           //         this.DialogResult = DialogResult.Cancel;
+           //     }
                
 
+           // }
+            try
+            {
+                if (!(base.validarDatos()) || String.IsNullOrEmpty(cmbColorSala.Text) || !(int.TryParse(txtLegajo.Text, out this.legajo)) || !(float.TryParse(txtCuota.Text, out this.precioCuota)))
+
+                {
+                    FrmPrincipal.mensajeError();
+
+                }
+
+                else
+
+                {
+
+                    alumno = new Alumno(txtNombre.Text, txtApellido.Text, int.Parse(txtDni.Text), base.esFemenino(cmbSexo.Text), this.precioCuota);
+                    alumno.Legajo = this.legajo;
+                    alumno.ColorSala = colorDeSala(cmbColorSala.Text);
+
+                    FrmAltaResponsable altaResponsable = new FrmAltaResponsable();
+
+                    this.Hide();
+                    DialogResult resultado = altaResponsable.ShowDialog();
+                    if (resultado == DialogResult.OK)
+                    {
+
+                        alumno.Responsable = altaResponsable.Responsable;
+                        this.DialogResult = DialogResult.OK;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se ha agregado al responsable");
+                        this.DialogResult = DialogResult.Cancel;
+                    }
+                }
+
+            }catch(AlumnoSinDniException dniEx)
+            {
+                MessageBox.Show(dniEx.Message);
+            }
+            catch(ApellidoVacioException apeEx)
+            {
+                MessageBox.Show(apeEx.Message);
+            }
+            catch(NombreVacioException nomEx)
+            {
+                MessageBox.Show(nomEx.Message);
             }
         }
 

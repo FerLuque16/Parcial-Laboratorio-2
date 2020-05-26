@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Excepciones;
 
 namespace Entidades
 {
@@ -20,7 +21,8 @@ namespace Entidades
                 return this.apellido; 
             }
             set 
-            { 
+            {
+                ValidarApellido(value);
                 this.apellido = value; 
             }
         }
@@ -32,7 +34,8 @@ namespace Entidades
                 return this.nombre; 
             }
             set 
-            { 
+            {
+                ValidarNombre(value);
                 this.nombre = value; 
             }
         }
@@ -45,7 +48,8 @@ namespace Entidades
                 return this.dni; 
             }
             set 
-            { 
+            {
+                ValidarPersonaSinDNI(value);
                 this.dni = value; 
             }
         }
@@ -64,9 +68,9 @@ namespace Entidades
 
         protected Persona(string nombre, string apellido, int dni)
         {
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.dni = dni;
+            this.Nombre = nombre;
+            this.Apellido = apellido;
+            this.Dni = dni;
         }
 
         protected Persona(string nombre, string apellido, int dni, bool femenino):this(nombre,apellido,dni)
@@ -94,5 +98,32 @@ namespace Entidades
 
             return sb.ToString();
         }
+
+
+        public void ValidarPersonaSinDNI(int value)
+        {
+            if(value <1000000)
+            {
+                throw new AlumnoSinDniException("DNI No Valido");
+            }
+        }
+
+        public void ValidarNombre(string value)
+        {
+            if (value == string.Empty)
+            {
+                throw new NombreVacioException("Nombre vacio");
+            }
+        }
+
+        public void ValidarApellido(string value)
+        {
+            if(value == string.Empty)
+            {
+                throw new ApellidoVacioException("Apellido vacio");
+            }
+        }
+
+        
     }
 }

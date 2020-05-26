@@ -6,3 +6,18 @@ C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.F
 C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.Fernando\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.Fernando\Entidades\obj\Debug\Entidades.dll
 C:\Users\Fer\Desktop\Programacion 2 proyectos\PARCIAL LABORATORIO PRUEBA\Luque.Fernando\Entidades\obj\Debug\Entidades.pdb
+C:\Users\Fer\Desktop\GITHUB PARCIAL LABO2\Parcial-Laboratorio-2\Luque.Fernando\Entidades\bin\Debug\Entidades.dll
+C:\Users\Fer\Desktop\GITHUB PARCIAL LABO2\Parcial-Laboratorio-2\Luque.Fernando\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Fer\Desktop\GITHUB PARCIAL LABO2\Parcial-Laboratorio-2\Luque.Fernando\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\Fer\Desktop\GITHUB PARCIAL LABO2\Parcial-Laboratorio-2\Luque.Fernando\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Fer\Desktop\GITHUB PARCIAL LABO2\Parcial-Laboratorio-2\Luque.Fernando\Entidades\obj\Debug\Entidades.dll
+C:\Users\Fer\Desktop\GITHUB PARCIAL LABO2\Parcial-Laboratorio-2\Luque.Fernando\Entidades\obj\Debug\Entidades.pdb
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Entidades\bin\Debug\Entidades.dll
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Entidades\bin\Debug\Excepciones.dll
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Entidades\bin\Debug\Excepciones.pdb
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Entidades\obj\Debug\Entidades.csproj.CopyComplete
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Entidades\obj\Debug\Entidades.dll
+C:\Users\Fer\Desktop\Programacion 2 proyectos\Clase 19-5\Luque.Fernando\Entidades\obj\Debug\Entidades.pdb

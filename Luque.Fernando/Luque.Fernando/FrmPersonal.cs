@@ -71,8 +71,11 @@ namespace Luque.Fernando
             }
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
 
-       
 
 
         public System.Windows.Forms.ComboBoxStyle setDropDown
@@ -137,7 +140,6 @@ namespace Luque.Fernando
 
         }
 
-
-
+       
     }
 }
